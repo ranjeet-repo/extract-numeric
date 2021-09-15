@@ -2,6 +2,7 @@ package prj.extract.numeric;
 
 import static org.junit.Assert.assertEquals;
 
+import java.math.BigInteger;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,11 +10,13 @@ public class LargestNumberTest {
 
   private LargestNumber number;
   private LargestNumberRegex numberRegex;
+  private LargestNumberRegexBigInt largestNumberRegexBigInt;
 
   @Before
   public void setUp() {
     number = new LargestNumber();
     numberRegex = new LargestNumberRegex();
+    largestNumberRegexBigInt = new LargestNumberRegexBigInt();
   }
 
   @Test
@@ -37,5 +40,15 @@ public class LargestNumberTest {
     assertEquals(91, numberRegex.findLargestNumberRegex("1j91iml54m4a1ene7cf8"));
     assertEquals(564, numberRegex.findLargestNumberRegex("100klh564abc365bg"));
 
+  }
+
+  @Test
+  public void returnLargestNumberFromStringWhenStringProvidedUsingRegexBigInt() {
+    BigInteger bigNumber = new BigInteger("1234567890987654321");
+    BigInteger zero =  BigInteger.ZERO;
+    assertEquals(bigNumber,
+        largestNumberRegexBigInt.findLargestNumberRegexBigInt("ebe1234567890987654321g5j8o2pdh5"));
+    assertEquals(zero,
+        largestNumberRegexBigInt.findLargestNumberRegexBigInt("ebe"));
   }
 }
